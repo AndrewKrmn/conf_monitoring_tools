@@ -15,4 +15,21 @@ docker run -d --restart="always" --net="host" --pid="host" -p 9093:9093 -v ./Ale
 
 docker run --restart="always" --volume=/:/rootfs:ro   --volume=/var/run:/var/run:ro   --volume=/sys:/sys:ro   --volume=/var/lib/docker/:/var/lib/docker:ro   --volume=/dev/disk/:/dev/disk:ro   --publish=8080:8080   --detach=true   --name=cadvisor   --privileged   --device=/dev/kmsg   gcr.io/cadvisor/cadvisor:v0.47.2
 
+docker service create -p 228:80 --name apache1 ubuntu/apache2
+
+docker service create -p 2000:80 --name apache2 ubuntu/apache2
+
+apt update
+
+apt install haproxy -y
+
+echo frontend bsite
+        bind :444
+        default_backend sites
+
+backend sites
+        balance
+        server s1 192.168.1.4:228 weight 50
+        server s2 192.168.1.4:2000 weight 50 >> /etc/haproxy/haproxy.cfg
+
 

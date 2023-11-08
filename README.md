@@ -13,6 +13,8 @@ About:
 open_docker_metrics.sh запускати тільки тоді,коли у вас не відкритий порт на метрики контейнерів,в іншому разі НЕ ЗАПУСКАТИ!
 main_manager.sh запускати на основну ноду(manager) aka Leader
 side_man_or_work.sh запускати на workers або на претендентів manager'а
+docker-compose.yml - запускає nginx proxy manager на ньому налаштувати proxy host
+ssl file - папка з ssl сертифікатами та ключами
 
 Grafana dashboards:
 1860 node exporter
